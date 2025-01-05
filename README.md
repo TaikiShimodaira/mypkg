@@ -38,6 +38,8 @@ data: 'Location: London, UK
   Sunset: 16:06'
 ---
 ```
+## 必要なソフトウェア  
+- python3
 ## 動作環境
 - Ubuntu 20.04 LTS  
 - ROS 2 バージョン: foxy
