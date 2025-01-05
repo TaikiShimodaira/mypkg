@@ -39,5 +39,5 @@ data: 'Location: London, UK
 ---
 ```
 ## 動作環境
--Ubuntu 20.04 LTS
--ROS 2 バージョン: foxy
+- Ubuntu 20.04 LTS  
+- ROS 2 バージョン: foxy  
