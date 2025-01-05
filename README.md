@@ -41,3 +41,9 @@ data: 'Location: London, UK
 ## 動作環境
 - Ubuntu 20.04 LTS  
 - ROS 2 バージョン: foxy  
+## ライセンス 
+- このソフトウェアは 3条項BSDライセンス の下で再頒布および使用が許可されています。  
+- このパッケージのコードの一部は，本人の許可を得て下記のスライドのもの（CC-BY-SA 4.0 by Ryuichi Ueda）を，自身の著作としたものです。
+  - https://github.com/ryuichiueda/slides_marp/tree/master/robosys2024
+-  © 2024 Taiki Shimodaira  
+
