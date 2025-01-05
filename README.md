@@ -45,7 +45,7 @@ data: 'Location: London, UK
 - https://www.hinodehinoiri.info/WorldSun.php
 - https://sciencenote.jp/diurnal-movement-of-the-sun/
 - https://hsato2011.hatenablog.com/entry/2024/06/24/093518
-- 
+- https://ideal-user-interface.hatenablog.com/entry/20160203/1454504050  
 ## ライセンス 
 - このソフトウェアは 3条項BSDライセンス の下で再頒布および使用が許可されています。  
 - このパッケージのコードの一部は，本人の許可を得て下記のスライドのもの（CC-BY-SA 4.0 by Ryuichi Ueda）を，自身の著作としたものです。
