@@ -23,3 +23,18 @@ colcon build
 ```
  ros2 topic echo /sunrise_sunset_topic
 ```
+### 実行例（端末2で表示）  
+```
+data: 'Location: Tokyo, Japan
+
+  Sunrise: 06:51
+
+  Sunset: 16:41'
+---
+data: 'Location: London, UK
+
+  Sunrise: 08:05
+
+  Sunset: 16:06'
+---
+```
