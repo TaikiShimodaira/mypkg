@@ -3,4 +3,4 @@
 # sunrise_sunset コマンド  
 [![test](https://github.com/TaikiShimodaira/mypkg/actions/workflows/test.yml/badge.svg)](https://github.com/TaikiShimodaira/mypkg/actions/workflows/test.yml)  
 ## 概要  
-このプログラムは、ROS2のパブリッシャとしてランダムで国と地域を選び、その国の日の出・日の入りをsunrise_sunsetというトピックで出力する。  
+このプログラムは、ROS2のノードとしてランダムに選ばれた都市の緯度・経度を基に、その日の日の出・日の入りの時刻を計算して、sunrise_sunsetというトピックで出力する。  
