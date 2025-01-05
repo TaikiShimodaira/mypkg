@@ -3,7 +3,7 @@
 #   日の出・日の入りを表示
 [![test](https://github.com/TaikiShimodaira/mypkg/actions/workflows/test.yml/badge.svg)](https://github.com/TaikiShimodaira/mypkg/actions/workflows/test.yml)  
 ## 概要  
-このパッケージは、ROS2のノードとしてランダムに選ばれた都市の緯度・経度を基に、日の出・日の入りの時刻を計算して、sunrise_sunset_topicというトピックで出力する。  
+このパッケージは、ROS2のパブリッシャとしてランダムに選ばれた都市の緯度・経度を基に、日の出・日の入りの時刻を計算して、sunrise_sunset_topicというトピックで出力する。  
 ## 使用方法  
 ### パッケージをクローン  
 ```
