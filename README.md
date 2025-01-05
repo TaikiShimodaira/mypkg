@@ -41,7 +41,7 @@ data: 'Location: London, UK
 ## 必要なソフトウェア  
 - python3
 ## 動作環境
-- Ubuntu 20.04 LTS  
+- Ubuntu 22.04 LTS  
 - ROS 2 バージョン: foxy
 ## 参考文献
 - https://www.hinodehinoiri.info/WorldSun.php
