@@ -40,7 +40,12 @@ data: 'Location: London, UK
 ```
 ## 動作環境
 - Ubuntu 20.04 LTS  
-- ROS 2 バージョン: foxy  
+- ROS 2 バージョン: foxy
+## 参考文献
+- https://www.hinodehinoiri.info/WorldSun.php
+- https://sciencenote.jp/diurnal-movement-of-the-sun/
+- https://hsato2011.hatenablog.com/entry/2024/06/24/093518
+- 
 ## ライセンス 
 - このソフトウェアは 3条項BSDライセンス の下で再頒布および使用が許可されています。  
 - このパッケージのコードの一部は，本人の許可を得て下記のスライドのもの（CC-BY-SA 4.0 by Ryuichi Ueda）を，自身の著作としたものです。
