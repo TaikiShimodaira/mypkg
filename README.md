@@ -7,4 +7,19 @@
 ## 使用方法  
 ### パッケージをクローン  
 ```
-git clone 
+git clone https://github.com/TaikiShimodaira/mypkg.git
+```
+### パッケージをビルド
+```
+cd ~/ros2_ws
+colcon build
+```
+### 実行  
+端末1  
+```
+ ros2 run mypkg sunrise_sunset
+```
+端末2
+```
+ ros2 topic echo /sunrise_sunset_topic
+```
