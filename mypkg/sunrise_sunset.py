@@ -6,13 +6,12 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from datetime import datetime, timedelta
 import math
-
-rclpy.init()
+import random
 
 def calculate_sunrise_sunset(lat, lon, date):
     # Constants
     zenith = 90.8333  # Official zenith for sunrise/sunset
-    
+
     # Day of the year
     n = date.timetuple().tm_yday
 
@@ -67,6 +66,10 @@ def calculate_sunrise_sunset(lat, lon, date):
     if H_sunrise is None or H_sunset is None:
         return None, None
 
+    # Convert H to hours
+    H_sunrise = H_sunrise / 15
+    H_sunset = H_sunset / 15
+
     # Local mean time
     def local_mean_time(H, RA, t):
         T = H + RA - (0.06571 * t) - 6.622
@@ -79,9 +82,9 @@ def calculate_sunrise_sunset(lat, lon, date):
     UTC_sunrise = T_sunrise - lng_hour
     UTC_sunset = T_sunset - lng_hour
 
-    # Convert to local time
-    sunrise_time = (UTC_sunrise + 9) % 24  # Adjust for Tokyo (UTC+9)
-    sunset_time = (UTC_sunset + 9) % 24
+    # Adjust for local time
+    sunrise_time = UTC_sunrise % 24
+    sunset_time = UTC_sunset % 24
 
     return sunrise_time, sunset_time
 
@@ -90,30 +93,38 @@ class SunriseSunsetInfo(Node):
         super().__init__("sunrise_sunset_talker")
         self.pub = self.create_publisher(String, "sunrise_sunset_topic", 10)
 
-        # Location information (Latitude, Longitude for Tokyo)
-        self.latitude = 35.6895
-        self.longitude = 139.6917
+        # List of random locations with (Name, Latitude, Longitude, Timezone Offset)
+        self.locations = [
+            ("Tokyo, Japan", 35.6895, 139.6917, 9),
+            ("New York, USA", 40.7128, -74.0060, -5),
+            ("London, UK", 51.5074, -0.1278, 0),
+            ("Sydney, Australia", -33.8688, 151.2093, 11),
+            ("Cape Town, South Africa", -33.9249, 18.4241, 2)
+        ]
         self.create_timer(60.0, self.cb)  # Publish every 60 seconds
 
     def cb(self):
         now = datetime.now()
 
+        # Choose a random location
+        location = random.choice(self.locations)
+        location_name, latitude, longitude, timezone_offset = location
+
         # Calculate sunrise and sunset times
-        sunrise_time, sunset_time = calculate_sunrise_sunset(self.latitude, self.longitude, now.date())
+        sunrise_time, sunset_time = calculate_sunrise_sunset(latitude, longitude, now.date())
 
         # Format times for output
         if sunrise_time is not None and sunset_time is not None:
-            sunrise_hour = int(sunrise_time)
-            sunrise_minute = int((sunrise_time - sunrise_hour) * 60)
-            sunset_hour = int(sunset_time)
-            sunset_minute = int((sunset_time - sunset_hour) * 60)
+            sunrise_hour = int(sunrise_time + timezone_offset) % 24
+            sunrise_minute = int((sunrise_time - int(sunrise_time)) * 60)
+            sunset_hour = int(sunset_time + timezone_offset) % 24
+            sunset_minute = int((sunset_time - int(sunset_time)) * 60)
 
-            message = f"Location: Tokyo, Japan\n"
-            message += f"Date: {now.date()}\n"
+            message = f"Location: {location_name}\n"
             message += f"Sunrise: {sunrise_hour:02}:{sunrise_minute:02}\n"
             message += f"Sunset: {sunset_hour:02}:{sunset_minute:02}"
         else:
-            message = "Sun does not rise or set on this day for the given location."
+            message = f"Sun does not rise or set on this day for {location_name}."
 
         msg = String()
         msg.data = message
@@ -122,8 +133,16 @@ class SunriseSunsetInfo(Node):
 
 
 def main():
+    rclpy.init()  # Ensure initialization
     node = SunriseSunsetInfo()
-    rclpy.spin(node)
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        print("Shutting down...")
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
 
 if __name__ == "__main__":
     main()
+
